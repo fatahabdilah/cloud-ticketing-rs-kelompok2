@@ -24,15 +24,15 @@
             <a href=""> <img src="asset/Cipta Hospital Indonesi-Blue & Black.svg" alt=""> </a>
 
             <ul>
-                <li><a href="">Beranda</a></li>
-                <li><a href="">Tentang</a></li>
-                <li><a href="">FAQ</a></li>
+                <li><a href="#beranda" class="menu-link">Beranda</a></li>
+                <li><a href="#tentang" class="menu-link">Tentang</a></li>
+                <li><a href="#faq" class="menu-link">FAQ</a></li>
             </ul>
             <button>MASUK / DAFTAR</button>
         </div>
 
     </nav>
-    <div></div>
+    <div id="beranda"></div>
     <section>
         <div>
             <img src="asset/CiptaHostpitalIndonesia-White.svg" alt="">
@@ -42,7 +42,7 @@
         </div>
 
     </section>
-    <section>
+    <section id="tentang" style=" scroll-margin-top: 68px;">
         <div>
             <div>
                 <h2>Tentang Kami</h2>
@@ -90,14 +90,15 @@
     <section>
         <div>
             <div>
-                <button>Buat Tiket Sekarang</button>
+                <button>Buat Tiket Sekarang <img src="asset/Ticket.png" alt=""></button>
                 <p>Dapatkan nomor antrian untuk layanan rawat jalan, laboratorium.</p>
             </div>
             <div>
-                <button>Konsultasi Online</button>
+                <button>Konsultasi Online <img src="asset/WhatsApp.png" alt=""></button>
                 <p>Nikmati kemudahan berkonsultasi dengan dokter terbaik kami</p>
             </div>
         </div>
+
 
     </section>
     <section>
@@ -111,62 +112,142 @@
         </div>
 
     </section>
-    <section>
+    <section id="faq" style=" scroll-margin-top: 68px;">
         <div>
-
             <h2>FAQ</h2>
             <p>(Frequently Asked Questions)</p>
 
             <div>
-                <div>
-                    <button>
+                <div class="faq-item">
+                    <button onclick="toggleFaq(this)">
                         <p>Bagaimana cara mengambil nomor antrian rumah sakit secara online?</p>
-                        <i>-</i>
+                        <i>+</i>
                     </button>
-
-                    <p>Setelah login, pilih jenis layanan (Poli Umum, Poli Gigi, dll), lalu klik “Ambil Antrian”. Nomor
-                        antrian akan langsung muncul dan bisa digunakan saat kunjungan.</p>
+                    <div class="faq-answer">
+                        <p>Setelah login, pilih jenis layanan (Poli Umum, Poli Gigi, dll), lalu klik “Ambil Antrian”.
+                            Nomor antrian akan langsung muncul dan bisa digunakan saat kunjungan.</p>
+                    </div>
                 </div>
-                <div>
-                    <button>
+
+                <div class="faq-item">
+                    <button onclick="toggleFaq(this)">
                         <p>Apakah bisa konsultasi dengan dokter tanpa harus datang langsung?</p>
-                        <i>-</i>
+                        <i>+</i>
                     </button>
-                    <p>loremloremloremloremloremloremloremloremloremloremloremloremlorem</p>
+                    <div class="faq-answer">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum feugiat vitae nisi a
+                            lacinia.</p>
+                    </div>
                 </div>
-                <div>
-                    <button>
+
+                <div class="faq-item">
+                    <button onclick="toggleFaq(this)">
                         <p>Bagaimana jika saya terlambat datang setelah ambil antrian online?</p>
-                        <i>-</i>
+                        <i>+</i>
                     </button>
-                    <p>loremloremloremloremloremloremloremloremloremloremloremloremlorem</p>
+                    <div class="faq-answer">
+                        <p>Jika Anda terlambat, nomor antrian bisa hangus. Mohon datang sesuai waktu antrian.</p>
+                    </div>
                 </div>
-
             </div>
-
         </div>
-
     </section>
+
+    <script>
+        function toggleFaq(button) {
+            const item = button.closest('.faq-item');
+            const isActive = item.classList.contains('active');
+
+            // Tutup semua item lain
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+                faq.querySelector('i').textContent = '+';
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+                button.querySelector('i').textContent = '−';
+            }
+        }
+    </script>
+
+
+
 
     <footer>
         <div>
             <div>
-                <img src="" alt="">
-                <p></p>
+                <div>
+                    <img src="asset/CiptaHostpitalIndonesia-Black.svg" alt="">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the
+                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                        type
+                        and scrambled it to make a type specimen</p>
+                </div>
+                <div>
+                    <h3>Kontak & Sosial Media</h3>
+                    <ul>
+                        <li><img src="asset/WhatsApp.svg" alt=""><a href="">+62 857 1969 2787</a></li>
+                        <li><img src="asset/Instagram.svg" alt=""><a href="">@ciptahospital</a></li>
+                        <li><img src="asset/Location.svg" alt=""><a href="">Jl. Surya Kencana No. 1, Pamulang Barat,
+                                Kecamatan Pamulang,
+                                Tangerang Selatan, Banten, Indonesia</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Akses Cepat</h3>
+                    <ul>
+                        <li><a href="">Beranda</a></li>
+                        <li><a href="">Tentang</a></li>
+                        <li><a href="">FAQ</a></li>
+                    </ul>
+                </div>
             </div>
             <div>
-                <h2></h2>
-                <ul>
-                    <li><i></i><a href=""></a></li>
-                    <li><i></i><a href=""></a></li>
-                    <li><i></i><a href=""></a></li>
-                </ul>
+                <a href="">Copyright | Kelompok 2</a>
             </div>
+
         </div>
-        <div>
-            <a href=""></a>
-        </div>
+
     </footer>
+    <script>
+        const sections = document.querySelectorAll('section, div#beranda'); // tetap ambil beranda juga
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function highlightMenu() {
+            let current = sections[0].getAttribute('id') || ''; // default kosong jika tidak ada id
+
+            sections.forEach(section => {
+                const id = section.getAttribute('id');
+                if (!id) return; // skip jika tidak ada id
+
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 68) {
+                    current = id;
+                }
+            });
+
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href === '#' + current && current !== '') {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightMenu);
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(highlightMenu, 100);
+            });
+        });
+
+        window.addEventListener('load', highlightMenu);
+
+    </script>
 </body>
 
 </html>

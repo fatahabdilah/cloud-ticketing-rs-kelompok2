@@ -2,11 +2,13 @@
     --color-light-blue: #cce2fc;
     --color-blue: #054FA9;
     --color-white: #ffffff;
-    --color-gray: #b3b3b3;
-    --color-darkgray: #585858;
     --color-black: #242424;
     font-family: "Poppins", sans-serif;
-    --box-shadow:1px 1px 4px rgb(0, 0, 0, 0.3);
+    --box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.3);
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 * {
@@ -19,7 +21,13 @@ h2 {
     margin-bottom: 0.5em;
 }
 
-p {
+h3 {
+    color: var(--color-white);
+    font-weight: 500;
+}
+
+p,
+a {
     line-height: 1.5em;
 }
 
@@ -28,6 +36,7 @@ body {
 }
 
 nav {
+    z-index: 1;
     background-color: var(--color-white);
     position: fixed;
     display: flex;
@@ -36,7 +45,7 @@ nav {
     box-shadow: var(--box-shadow);
 }
 
-nav > div {
+nav>div {
     width: 100%;
     max-width: 1088px;
     display: flex;
@@ -44,17 +53,43 @@ nav > div {
     padding: 1em 2em;
 }
 
-nav > div a img {
-    height: 2em;
+nav>div a img {
+    height: 2.25em;
 }
 
-nav > div ul {
+nav>div ul {
     gap: 1em;
     align-items: center;
     display: flex;
 }
 
-nav > div button {
+.menu-link {
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 0.25em;
+    color: #000;
+}
+
+.menu-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    border-radius: 8px;
+    /* bulatkan ujung */
+    transition: background-color 0.3s ease;
+}
+
+.menu-link.active::after {
+    background-color: var(--color-blue);
+    /* warna garis bawah */
+}
+
+
+nav>div button {
     box-shadow: var(--box-shadow);
     font-size: 0.75rem;
     background-color: var(--color-blue);
@@ -64,15 +99,16 @@ nav > div button {
     white-space: nowrap;
 }
 
-nav > div button:hover {
+nav>div button:hover {
     transition: 0.3s;
 }
 
-body > div {
-    height: calc(100vh - 72px);
+body>div {
+    /* height: calc(100vh + 72px); */
+    height: 100vh;
     width: 100%;
     padding-top: 72px;
-    background-color: var(--color-darkgray);
+    background-color: var(--color-black);
 }
 
 section {
@@ -82,24 +118,26 @@ section {
 
 section:nth-of-type(odd) {
     background-color: var(--color-light-blue);
+    box-shadow: var(--box-shadow);
+    position: relative;
 }
 
 section:nth-of-type(even) {
     background-color: var(--color-white);
 }
 
-section > div {
+section>div {
     width: 100%;
     max-width: 1080px;
 }
 
-section:first-of-type > div {
+section:first-of-type>div {
     display: grid;
     justify-content: center;
     justify-items: center;
 }
 
-section:first-of-type > div img {
+section:first-of-type>div img {
     box-shadow: var(--box-shadow);
     height: 2.5em;
     padding: 0.75em 3em;
@@ -108,12 +146,13 @@ section:first-of-type > div img {
     box-sizing: content-box;
 }
 
-section:first-of-type > div p {
+section:first-of-type>div p {
     padding: 1em;
     font-weight: 500;
 }
 
-section:nth-of-type(2) > div {
+section:nth-of-type(2)>div {
+
     display: flex;
     padding: 4em;
     gap: 2em;
@@ -121,49 +160,55 @@ section:nth-of-type(2) > div {
     place-items: center;
 }
 
-section:nth-of-type(2) > div div:first-child {
+section:nth-of-type(2)>div div:first-child {
     flex: 3;
 }
 
-section:nth-of-type(2) > div div:last-child {
+section:nth-of-type(2)>div div:last-child {
     flex: 2;
-       border-radius: 1em;
-       overflow: hidden;
-       box-shadow: var(--box-shadow);
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
 }
 
 
 
-section:nth-of-type(3) > div {
+section:nth-of-type(3)>div {
     display: grid;
     padding: 4em;
     justify-content: left;
 }
 
-section:nth-of-type(3) > div > div {
+section:nth-of-type(3)>div>div {
     padding-top: 1em;
     display: flex;
     gap: 1em;
 }
 
-section:nth-of-type(3) > div > div > div {
+section:nth-of-type(3)>div>div>div {
+    box-shadow: var(--box-shadow);
     flex: 1;
     display: flex;
     border-radius: 1em;
     overflow: hidden;
 }
-section:nth-of-type(3) > div > div > div > div{
-display: flex;
-align-items: center;
-background-color: var(--color-blue);
-padding: 1em;
+
+section:nth-of-type(3)>div>div>div>div {
+    position: relative;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    background-color: var(--color-blue);
+    padding: 1em;
 }
-section:nth-of-type(3) > div > div > div > div img {
-  object-fit: contain;
+
+section:nth-of-type(3)>div>div>div>div img {
+
+    object-fit: contain;
     height: 3em;
 }
 
-section:nth-of-type(3) > div > div > div p {
+section:nth-of-type(3)>div>div>div p {
     align-items: center;
     display: flex;
     font-weight: 600;
@@ -171,12 +216,14 @@ section:nth-of-type(3) > div > div > div p {
     background-color: var(--color-white);
     font-size: 0.9em;
 }
-section:nth-of-type(4)> div {
+
+section:nth-of-type(4)>div {
     padding: 4em;
-display: flex;
-gap: 2em;
+    display: flex;
+    gap: 2em;
 }
-section:nth-of-type(4)> div >div{
+
+section:nth-of-type(4)>div>div {
     box-shadow: var(--box-shadow);
     display: grid;
     gap: 1em;
@@ -185,71 +232,239 @@ section:nth-of-type(4)> div >div{
     border-radius: 1em;
     overflow: hidden;
 }
-section:nth-of-type(4)> div >div button{
+
+section:nth-of-type(4)>div>div button {
+    display: flex;
     box-shadow: var(--box-shadow);
     background-color: var(--color-white);
-    padding: 0.5em 1em;
+    padding: 0.25em 1em;
+    align-items: center;
+    gap: 0.5em;
     font-size: 1.25em;
     border-radius: 1em;
     font-weight: 500;
     width: max-content;
+    white-space: nowrap;
 }
-section:nth-of-type(4)> div >div p{
+
+section:nth-of-type(4)>div>div button img {
+    width: 1.5em;
+}
+
+section:nth-of-type(4)>div>div p {
     color: var(--color-white);
 }
-section:nth-of-type(5)> div {
+
+section:nth-of-type(5)>div {
     justify-content: center;
     justify-items: center;
     display: grid;
 }
-section:nth-of-type(5)> div>p{
+
+section:nth-of-type(5)>div>p {
     box-shadow: var(--box-shadow);
     color: var(--color-white);
-        padding: 0.75em 3em;
-        border-radius: 0 0 1em 1em;
-        background-color: var(--color-blue);
-        font-weight: 500;
+    padding: 0.75em 3em;
+    border-radius: 0 0 1em 1em;
+    background-color: var(--color-blue);
+    font-weight: 500;
 }
-section:nth-of-type(5)> div>div{
+
+section:nth-of-type(5)>div>div {
     display: flex;
     padding: 1em;
-gap: 5em;
+    gap: 5em;
 }
-section:nth-of-type(5)> div>div img{
+
+section:nth-of-type(5)>div>div img {
     width: 6em;
 }
-section:nth-of-type(6)>div{
+
+section:nth-of-type(6)>div {
     justify-items: center;
     display: grid;
     padding: 4em;
 }
-section:nth-of-type(6)>div>div{
+
+
+section:nth-of-type(6)>div>div {
     padding-top: 1em;
     display: grid;
     gap: 1em;
 }
-section:nth-of-type(6)>div>div>div{
+
+
+/* section:nth-of-type(6)>div>div>div {
     border-radius: 1em;
     overflow: hidden;
     box-shadow: var(--box-shadow);
-}
-section:nth-of-type(6)>div>div>div>button{
-  
+    transition: 0.3s ease;
+} */
+
+/*  
+section:nth-of-type(6)>div>div>div>button {
     width: 100%;
     justify-content: space-between;
-display: flex;
-  background-color: var(--color-blue);
-  padding: 0.5em 2em;
-   box-shadow: var(--box-shadow);
+    display: flex;
+    background-color: var(--color-blue);
+    padding: 0.5em 2em;
+    box-shadow: var(--box-shadow);
 }
-section:nth-of-type(6)>div>div>div>button p{
-   
+
+section:nth-of-type(6)>div>div>div>button p {
+
     color: var(--color-white);
 }
-section:nth-of-type(6)>div>div>div>button i{
+
+section:nth-of-type(6)>div>div>div>button i {
     font-size: 1.5em;
     color: var(--color-white);
 }
-section:nth-of-type(6)>div>div>div>p{
-  padding: 0.5em 2em;
+
+section:nth-of-type(6)>div>div>div>p {
+    padding: 0.5em 2em;
+} */
+
+
+.faq-item {
+
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: 0.3s ease;
+}
+
+.faq-item button {
+
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    background-color: var(--color-blue);
+    padding: 0.5em 2em;
+    box-shadow: var(--box-shadow);
+    transition: 0.3s;
+}
+
+
+.faq-item button p {
+    color: var(--color-white);
+
+}
+
+.faq-item button i {
+    transform: rotate(90deg);
+    transition: transform 0.3s;
+
+    font-size: 1.5em;
+    color: var(--color-white);
+}
+
+.faq-answer {
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.faq-answer p {
+    padding: 0.5em 2em;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 5em;
+    /* cukup besar agar isi bisa muncul penuh */
+}
+
+.faq-item.active button i {
+    transform: rotate(180deg);
+    /* dari + jadi x */
+}
+
+footer {
+    box-shadow: var(--box-shadow);
+    display: flex;
+    background-color: var(--color-black);
+    justify-content: center;
+}
+
+footer p,
+footer a {
+    color: var(--color-white);
+    font-weight: 300;
+}
+
+footer>div {
+    gap: 4em;
+    max-width: 1088px;
+    padding: 4em 2em 2em 2em;
+    display: grid
+}
+
+footer>div>div:first-child {
+    gap: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+footer>div>div:first-child>div {
+    display: grid;
+    align-items: start;
+    gap: 1em;
+    align-content: start;
+}
+
+footer>div>div:first-child>div:first-child {
+    flex: 3;
+}
+
+footer>div>div:first-child>div:first-child img {
+    height: 3em;
+}
+
+footer>div>div:first-child>div:nth-child(2) {
+    flex: 2;
+}
+
+footer>div>div:first-child>div:nth-child(2) ul {
+    display: grid;
+    gap: 0.5em;
+}
+
+footer>div>div:first-child>div:nth-child(2) ul li {
+    gap: 0.5em;
+    align-items: start;
+    display: flex;
+
+}
+
+footer>div>div:first-child>div:nth-child(2) ul li img {
+    height: auto;
+    width: 1.5em;
+    object-fit: contain;
+}
+
+footer>div>div:first-child>div:last-child {
+    flex: 1;
+
+}
+
+footer>div>div:first-child>div:last-child ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    display: grid;
+}
+
+footer>div>div:first-child>div:last-child ul li::marker {
+    color: var(--color-white);
+}
+
+footer>div>div:last-child a {
+    display: flex;
+    justify-content: center;
+    color: var(--color-blue);
+}
+
+footer>div>div:last-child a:hover {
+    transition: 0.3s;
+    color: var(--color-light-blue);
 }
