@@ -63,6 +63,20 @@ nav>div ul {
     display: flex;
 }
 
+@media (max-width: 768px) {
+    nav>div {
+        padding: 1em;
+    }
+
+    nav>div ul {
+        display: none;
+    }
+
+    nav>div button {
+        display: none;
+    }
+}
+
 .menu-link {
     position: relative;
     text-decoration: none;
@@ -114,6 +128,7 @@ body>div {
 section {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 section:nth-of-type(odd) {
@@ -131,6 +146,20 @@ section>div {
     max-width: 1080px;
 }
 
+@media (max-width: 768px) {
+    section:not(:first-of-type):not(:nth-of-type(5))>div {
+        padding: 2em;
+    }
+}
+
+@media (max-width: 425px) {
+    section:not(:first-of-type):not(:nth-of-type(5))>div {
+        padding: 1em;
+    }
+}
+
+
+
 section:first-of-type>div {
     display: grid;
     justify-content: center;
@@ -147,6 +176,7 @@ section:first-of-type>div img {
 }
 
 section:first-of-type>div p {
+    text-align: center;
     padding: 1em;
     font-weight: 500;
 }
@@ -156,16 +186,19 @@ section:nth-of-type(2)>div {
     display: flex;
     padding: 4em;
     gap: 2em;
+    flex-wrap: wrap;
     place-content: center;
     place-items: center;
 }
 
 section:nth-of-type(2)>div div:first-child {
     flex: 3;
+    min-width: 200px;
 }
 
 section:nth-of-type(2)>div div:last-child {
     flex: 2;
+    min-width: 200px;
     border-radius: 1em;
     overflow: hidden;
     box-shadow: var(--box-shadow);
@@ -181,6 +214,7 @@ section:nth-of-type(3)>div {
 
 section:nth-of-type(3)>div>div {
     padding-top: 1em;
+    flex-wrap: wrap;
     display: flex;
     gap: 1em;
 }
@@ -191,9 +225,17 @@ section:nth-of-type(3)>div>div>div {
     display: flex;
     border-radius: 1em;
     overflow: hidden;
+    min-width: 150px;
+}
+
+@media (max-width: 900px) {
+    section:nth-of-type(3)>div>div>div {
+        min-width: 300px;
+    }
 }
 
 section:nth-of-type(3)>div>div>div>div {
+
     position: relative;
     box-shadow: var(--box-shadow);
     display: flex;
@@ -209,6 +251,7 @@ section:nth-of-type(3)>div>div>div>div img {
 }
 
 section:nth-of-type(3)>div>div>div p {
+    width: 100%;
     align-items: center;
     display: flex;
     font-weight: 600;
@@ -220,10 +263,14 @@ section:nth-of-type(3)>div>div>div p {
 section:nth-of-type(4)>div {
     padding: 4em;
     display: flex;
-    gap: 2em;
+    flex-wrap: wrap;
+    row-gap: 1em;
+    column-gap: 2em;
 }
 
 section:nth-of-type(4)>div>div {
+    min-width: 280PX;
+    flex: 1;
     box-shadow: var(--box-shadow);
     display: grid;
     gap: 1em;
@@ -234,6 +281,7 @@ section:nth-of-type(4)>div>div {
 }
 
 section:nth-of-type(4)>div>div button {
+
     display: flex;
     box-shadow: var(--box-shadow);
     background-color: var(--color-white);
@@ -241,10 +289,15 @@ section:nth-of-type(4)>div>div button {
     align-items: center;
     gap: 0.5em;
     font-size: 1.25em;
-    border-radius: 1em;
+    border-radius: 1.25em;
     font-weight: 500;
     width: max-content;
-    white-space: nowrap;
+}
+
+@media(max-width:425px) {
+    section:nth-of-type(4)>div>div button {
+        font-size: 18px;
+    }
 }
 
 section:nth-of-type(4)>div>div button img {
@@ -253,6 +306,14 @@ section:nth-of-type(4)>div>div button img {
 
 section:nth-of-type(4)>div>div p {
     color: var(--color-white);
+}
+
+
+@media(max-width:450px) {
+
+    section:nth-of-type(4)>div>div {
+        padding: 1em;
+    }
 }
 
 section:nth-of-type(5)>div {
@@ -273,11 +334,12 @@ section:nth-of-type(5)>div>p {
 section:nth-of-type(5)>div>div {
     display: flex;
     padding: 1em;
-    gap: 5em;
+    gap: 15vw;
 }
 
 section:nth-of-type(5)>div>div img {
-    width: 6em;
+    width: 6VW;
+    min-width: 4EM;
 }
 
 section:nth-of-type(6)>div {
@@ -349,6 +411,7 @@ section:nth-of-type(6)>div>div>div>p {
 .faq-item button p {
     color: var(--color-white);
 
+
 }
 
 .faq-item button i {
@@ -401,9 +464,16 @@ footer>div {
 }
 
 footer>div>div:first-child {
+
     gap: 2em;
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 768px) {
+    footer>div>div:first-child {
+        display: grid;
+    }
 }
 
 footer>div>div:first-child>div {
