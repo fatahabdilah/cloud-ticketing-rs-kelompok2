@@ -164,17 +164,20 @@
             const item = button.closest('.faq-item');
             const isActive = item.classList.contains('active');
 
-            // Tutup semua item lain
             document.querySelectorAll('.faq-item').forEach(faq => {
                 faq.classList.remove('active');
+                faq.querySelector('.faq-answer').style.height = '0px';
                 faq.querySelector('i').textContent = '+';
             });
 
             if (!isActive) {
                 item.classList.add('active');
+                const answer = item.querySelector('.faq-answer');
+                answer.style.height = answer.scrollHeight + 'px';
                 button.querySelector('i').textContent = '−';
             }
         }
+
     </script>
 
 

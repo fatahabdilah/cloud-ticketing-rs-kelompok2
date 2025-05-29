@@ -381,7 +381,9 @@ section:nth-of-type(6)>div>div {
 }
 
 .faq-item button {
-
+    align-content: center;
+    gap: 1em;
+    align-items: center;
     width: 100%;
     justify-content: space-between;
     display: flex;
@@ -393,12 +395,14 @@ section:nth-of-type(6)>div>div {
 
 
 .faq-item button p {
+    text-align: left;
     color: var(--color-white);
 
 
 }
 
 .faq-item button i {
+    height: min-content;
     transform: rotate(90deg);
     transition: transform 0.3s;
 
@@ -406,25 +410,28 @@ section:nth-of-type(6)>div>div {
     color: var(--color-white);
 }
 
-.faq-answer {
+@media(max-width:425px) {
 
-    max-height: 0;
+    .faq-item button {
+
+        padding: 0.5em 1em;
+
+    }
+}
+
+.faq-answer {
+    height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease;
+    transition: height 0.4s ease;
 }
 
 .faq-answer p {
     padding: 0.5em 2em;
 }
 
-.faq-item.active .faq-answer {
-    max-height: 5em;
-    /* cukup besar agar isi bisa muncul penuh */
-}
 
 .faq-item.active button i {
     transform: rotate(180deg);
-    /* dari + jadi x */
 }
 
 footer {
