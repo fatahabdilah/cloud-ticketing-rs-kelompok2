@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -23,16 +22,48 @@
         <div>
             <a href=""> <img src="asset/Cipta Hospital Indonesi-Blue & Black.svg" alt=""> </a>
 
-            <ul>
+            <ul class="menu-laptop">
                 <li><a href="#beranda" class="menu-link">Beranda</a></li>
                 <li><a href="#tentang" class="menu-link">Tentang</a></li>
                 <li><a href="#faq" class="menu-link">FAQ</a></li>
             </ul>
             <button>MASUK / DAFTAR</button>
+            <label class="burger" for="burger">
+                <input type="checkbox" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <ul class="menu-mobile">
+
+                <li><a href="#beranda" class="menu-link">Beranda</a></li>
+                <li><a href="#tentang" class="menu-link">Tentang</a></li>
+                <li><a href="#faq" class="menu-link">FAQ</a></li>
+                <li><button>MASUK / DAFTAR</button></li>
+            </ul>
+
         </div>
 
     </nav>
-    <div id="beranda"></div>
+    <script>
+        const burgerCheckbox = document.getElementById('burger');
+        const menuMobile = document.querySelector('.menu-mobile');
+
+        burgerCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                menuMobile.classList.add('active');
+            } else {
+                menuMobile.classList.remove('active');
+            }
+        });
+
+    </script>
+
+
+
+    <header id="beranda"></header>
     <section>
         <div>
             <img src="asset/CiptaHostpitalIndonesia-White.svg" alt="">
@@ -221,42 +252,50 @@
 
     </footer>
     <script>
-        const sections = document.querySelectorAll('section, div#beranda'); // tetap ambil beranda juga
+        const sections = document.querySelectorAll('section, header');
         const menuLinks = document.querySelectorAll('.menu-link');
 
         function highlightMenu() {
-            let current = sections[0].getAttribute('id') || ''; // default kosong jika tidak ada id
+            let current = '';
 
+            // Cari section terakhir yang dilewati oleh scroll
             sections.forEach(section => {
                 const id = section.getAttribute('id');
-                if (!id) return; // skip jika tidak ada id
-
                 const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 68) {
+
+                // Hanya periksa jika punya id
+                if (id && window.pageYOffset >= sectionTop - 80) {
                     current = id;
                 }
             });
 
+            // Jika tidak ada yang aktif, fallback ke 'beranda'
+            if (!current) {
+                current = 'beranda';
+            }
+
+            // Update link yang aktif
             menuLinks.forEach(link => {
-                link.classList.remove('active');
                 const href = link.getAttribute('href');
-                if (href === '#' + current && current !== '') {
+                if (href === '#' + current) {
                     link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
                 }
             });
         }
 
+        // Jalankan saat load, scroll, dan klik menu
         window.addEventListener('scroll', highlightMenu);
-
+        window.addEventListener('load', highlightMenu);
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                setTimeout(highlightMenu, 100);
+                setTimeout(highlightMenu, 100); // tunggu scroll selesai
             });
         });
-
-        window.addEventListener('load', highlightMenu);
-
     </script>
+
+
 </body>
 
 </html>

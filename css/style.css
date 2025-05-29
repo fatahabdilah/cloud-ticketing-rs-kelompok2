@@ -38,7 +38,7 @@ body {
 }
 
 nav {
-    z-index: 1;
+    z-index: 2;
     background-color: var(--color-white);
     position: fixed;
     display: flex;
@@ -52,6 +52,7 @@ nav>div {
     max-width: 1152px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1em 2em;
 }
 
@@ -59,19 +60,19 @@ nav>div a img {
     height: 2.25em;
 }
 
-nav>div ul {
+nav>div .menu-laptop {
     gap: 1em;
     align-items: center;
     display: flex;
 }
 
-nav>div ul li .menu-link {
+.menu-link {
     position: relative;
     padding-bottom: 0.25em;
     color: #000;
 }
 
-nav>div ul li .menu-link::after {
+.menu-link::after {
     content: "";
     position: absolute;
     left: 0;
@@ -98,21 +99,132 @@ nav>div button {
     white-space: nowrap;
 }
 
+nav>div .burger {
+    display: none;
+    position: relative;
+    width: 2em;
+    justify-content: center;
+    height: 2em;
+    background: transparent;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    nav>div .burger {
+        display: flex;
+    }
+}
+
+nav>div .burger input {
+    display: none;
+}
+
+nav>div .burger span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 66%;
+    background: var(--color-white);
+    border-radius: 0.5em;
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: .25s;
+}
+
+nav>div .burger span:nth-of-type(1) {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blue);
+}
+
+nav>div .burger span:nth-of-type(2) {
+    top: 25%;
+    transform-origin: right center;
+}
+
+nav>div .burger span:nth-of-type(3) {
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: right center;
+}
+
+nav>div .burger span:nth-of-type(4) {
+    top: 75%;
+    transform-origin: right center;
+    transform: translateY(-100%);
+}
+
+
+nav>div .burger input:checked~span:nth-of-type(1) {
+    border-radius: 2em;
+}
+
+nav>div .burger input:checked~span:nth-of-type(2) {
+    transform: rotate(-45deg);
+    top: 7px;
+    left: 2.5px;
+}
+
+nav>div .burger input:checked~span:nth-of-type(3) {
+    width: 0%;
+    opacity: 0;
+}
+
+nav>div .burger input:checked~span:nth-of-type(4) {
+    transform: rotate(45deg);
+    top: 22px;
+    left: 2.5px;
+}
+
+nav>div .menu-mobile {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--color-white);
+    width: 100%;
+    display: none;
+    justify-content: center;
+    justify-items: center;
+    gap: 1em;
+
+    box-shadow:
+        1px 2px 2px rgba(0, 0, 0, 0.3);
+    ;
+}
+
+nav>div .menu-mobile.active {
+    max-height: max-content;
+    opacity: 1;
+    padding: 0em 0em 1em 0em;
+}
+
+
 @media (max-width: 768px) {
     nav>div {
         padding: 1em;
     }
 
-    nav>div ul {
+    nav>div .menu-laptop {
         display: none;
     }
 
-    nav>div button {
+
+
+    nav>div>button {
         display: none;
+    }
+
+    nav>div .menu-mobile {
+        display: grid;
     }
 }
 
-body>div {
+
+header {
     height: 100vh;
     width: 100%;
     background-color: var(--color-black);
@@ -410,14 +522,10 @@ section:nth-of-type(6)>div>div {
     color: var(--color-white);
 }
 
-@media(max-width:425px) {
-
-    .faq-item button {
-
-        padding: 0.5em 1em;
-
-    }
+.faq-item.active button i {
+    transform: rotate(180deg);
 }
+
 
 .faq-answer {
     height: 0;
@@ -429,10 +537,22 @@ section:nth-of-type(6)>div>div {
     padding: 0.5em 2em;
 }
 
+@media(max-width:425px) {
+    .faq-item button {
+        gap: 0.5em;
+    }
 
-.faq-item.active button i {
-    transform: rotate(180deg);
+    .faq-item button {
+
+        padding: 0.5em 1em;
+
+    }
+
+    .faq-answer p {
+        padding: 0.5em 1em;
+    }
 }
+
 
 footer {
     box-shadow: var(--box-shadow);
@@ -455,9 +575,6 @@ footer>div {
 }
 
 footer>div>div:first-child {
-
-    /* row-gap: 1em;
-    column-gap: 2em; */
     gap: 2em;
     display: flex;
     justify-content: center;
