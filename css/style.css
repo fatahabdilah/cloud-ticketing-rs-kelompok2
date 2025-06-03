@@ -189,7 +189,7 @@ nav>div .menu-mobile {
     display: none;
     justify-content: center;
     justify-items: center;
-    gap: 1em;
+    gap: 0.5em;
 
     box-shadow:
         1px 2px 2px rgba(0, 0, 0, 0.3);
@@ -202,6 +202,9 @@ nav>div .menu-mobile.active {
     padding: 0em 0em 1em 0em;
 }
 
+.menu-mobile button {
+    margin-top: 0.5em;
+}
 
 @media (max-width: 768px) {
     nav>div {

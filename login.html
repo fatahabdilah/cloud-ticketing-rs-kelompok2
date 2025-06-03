@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login & Daftar</title>
+    <style>
+        body {
+            background: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #DDDDDD;
+            border-radius: 16px;
+            width: max-content;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .tabs {
+            display: flex;
+        }
+
+        .tab {
+            border-radius: 1em 1em 0em 0em;
+            flex: 1;
+            text-align: center;
+            padding: 1em 5em;
+            cursor: pointer;
+            background: #ddd;
+            color: #999;
+            font-weight: bold;
+
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: #004AAD;
+            color: white;
+        }
+
+        .form-container {
+            padding: 4em;
+            background-color: white;
+        }
+
+        .form-group {
+            margin-bottom: 1em;
+            gap: 0.5em;
+            display: grid;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 0.5em 1em;
+            border-radius: 1em;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        button {
+
+            padding: 0.5em 2em;
+            background: #004AAD;
+            color: white;
+            border: none;
+            border-radius: 1em;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="showForm('login')">MASUK</div>
+            <div class="tab" onclick="showForm('register')">DAFTAR</div>
+        </div>
+
+        <div class="form-container">
+            <!-- Form MASUK -->
+            <div id="loginForm">
+                <div class="form-group">
+                    <label>Nama / Nomor handphone</label>
+                    <input type="text" placeholder="Masukkan nama atau nomor HP">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Masukkan password">
+                </div>
+                <button>Masuk</button>
+            </div>
+
+            <!-- Form DAFTAR -->
+            <div id="registerForm" class="hidden">
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" placeholder="Masukkan nama">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Masukkan password">
+                </div>
+                <div class="form-group">
+                    <label>Nomor handphone</label>
+                    <input type="tel" placeholder="Masukkan nomor HP">
+                </div>
+                <div class="form-group">
+                    <label>Alamat E-Mail</label>
+                    <input type="email" placeholder="Masukkan email">
+                </div>
+                <button>Daftar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showForm(form) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabs = document.querySelectorAll('.tab');
+
+            if (form === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                tabs[0].classList.add('active');
+                tabs[1].classList.remove('active');
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                tabs[0].classList.remove('active');
+                tabs[1].classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
