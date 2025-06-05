@@ -19,53 +19,41 @@
 <body>
     <nav>
         <div>
-            <a href=""> <img src="asset/Cipta Hospital Indonesi-Blue & Black.svg" alt=""> </a>
+            <a href="index.html"> <img src="asset/Cipta Hospital Indonesi-Blue & Black.svg" alt=""> </a>
 
-            <ul class="menu-laptop">
-                <li><a href="#beranda" class="menu-link">Beranda</a></li>
-                <li><a href="#tentang" class="menu-link">Tentang</a></li>
-                <li><a href="#faq" class="menu-link">FAQ</a></li>
-            </ul>
-            <button>MASUK / DAFTAR</button>
+
+            <input type="checkbox" id="burger" hidden>
             <label class="burger" for="burger">
-                <input type="checkbox" id="burger">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
             </label>
 
-            <ul class="menu-mobile">
-
+            <ul class="menu">
                 <li><a href="#beranda" class="menu-link">Beranda</a></li>
                 <li><a href="#tentang" class="menu-link">Tentang</a></li>
                 <li><a href="#faq" class="menu-link">FAQ</a></li>
-                <li><button>MASUK / DAFTAR</button></li>
+                <li>
+                    <button onclick="window.location.href='login.html'">MASUK / DAFTAR</button>
+                </li>
             </ul>
-
+            <button onclick="window.location.href='login.html'">MASUK / DAFTAR</button>
         </div>
 
     </nav>
-    <script>
-        const burgerCheckbox = document.getElementById('burger');
-        const menuMobile = document.querySelector('.menu-mobile');
-
-        burgerCheckbox.addEventListener('change', function () {
-            if (this.checked) {
-                menuMobile.classList.add('active');
-            } else {
-                menuMobile.classList.remove('active');
-            }
-        });
-
-    </script>
-
 
 
     <header id="beranda"></header>
     <section>
         <div>
-            <img src="asset/CiptaHostpitalIndonesia-White.svg" alt="">
+            <h1>
+                <a href="#beranda">
+                    <img src="asset/CiptaHostpitalIndonesia-White.svg" alt="Cipta Hospital Indonesia">
+                </a>
+            </h1>
+
+
 
             <p>Melayani dari Hati, Membangkitkan Harapan</p>
 

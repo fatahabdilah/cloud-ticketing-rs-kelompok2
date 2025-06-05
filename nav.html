@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar Responsive Tanpa JS</title>
+    <style>
+        :root {
+            --color-white: #ffffff;
+            --color-blue: #003366;
+            --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        nav {
+            z-index: 2;
+            background-color: var(--color-white);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: var(--box-shadow);
+        }
+
+        nav>.container {
+            max-width: 1152px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1em 2em;
+            position: relative;
+        }
+
+        nav img {
+            height: 2.25em;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1em;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            position: relative;
+            padding-bottom: 0.25em;
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a.active::after {
+            background-color: var(--color-blue);
+        }
+
+        .login-btn {
+            background-color: var(--color-blue);
+            color: var(--color-white);
+            padding: 0.75em 1.5em;
+            border-radius: 2em;
+            font-size: 0.75em;
+            box-shadow: var(--box-shadow);
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Burger Button */
+        #menu-toggle {
+            display: none;
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 1.5em;
+            height: 1.2em;
+            cursor: pointer;
+        }
+
+        .burger span {
+            height: 2px;
+            background: var(--color-blue);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .burger {
+                display: flex;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--color-white);
+                flex-direction: column;
+                align-items: center;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: max-height 0.3s ease, opacity 0.3s ease;
+                box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+                gap: 0.5em;
+                padding-bottom: 0;
+            }
+
+            #menu-toggle:checked+label+ul {
+                max-height: 300px;
+                opacity: 1;
+                padding: 1em 0;
+            }
+
+            .login-btn {
+                margin-top: 0.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="index.html">
+                <img src="asset/Cipta Hospital Indonesi-Blue & Black.svg" alt="Logo">
+            </a>
+
+            <input type="checkbox" id="menu-toggle" />
+            <label class="burger" for="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <ul>
+                <li><a href="#beranda" class="menu-link">Beranda</a></li>
+                <li><a href="#tentang" class="menu-link">Tentang</a></li>
+                <li><a href="#faq" class="menu-link">FAQ</a></li>
+                <li><button class="login-btn" onclick="window.location.href='login.html'">MASUK / DAFTAR</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Placeholder -->
+    <div style="margin-top: 100px; padding: 2em;">
+        <h1>Contoh Halaman</h1>
+        <p>Isi konten di sini...</p>
+    </div>
+
+</body>
+
+</html>
