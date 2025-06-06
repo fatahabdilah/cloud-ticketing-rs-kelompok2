@@ -3,127 +3,117 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Daftar</title>
+    <title>Login & Daftar - Cipta Hospital Indonesia</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
-
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <style>
-
-    </style>
-
 </head>
 
 <body>
-    <nav>
-        <div>
-            <a href="index.html"> <img src="asset/Cipta Hospital Indonesi-Blue & Black.svg" alt=""> </a>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="index.html" class="navbar__brand">
+                <img src="asset/Cipta Hospital Indonesi-Blue & Black.svg" alt="Logo Cipta Hospital Indonesia">
+            </a>
 
-
-            <input type="checkbox" id="burger" hidden>
-            <label class="burger" for="burger">
+            <input type="checkbox" id="burger-menu" class="navbar__burger-checkbox" hidden>
+            <label class="navbar__burger-label" for="burger-menu">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
             </label>
 
-            <ul class="menu">
-                <li><a href="index.html#beranda" class="menu-link">Beranda</a></li>
-                <li><a href="index.html#tentang" class="menu-link">Tentang</a></li>
-                <li><a href="index.html#faq" class="menu-link">FAQ</a></li>
-                <li>
+            <ul class="navbar__menu">
+                <li><a href="#beranda" class="navbar__menu-link">Beranda</a></li>
+                <li><a href="#tentang" class="navbar__menu-link">Tentang</a></li>
+                <li><a href="#faq" class="navbar__menu-link">FAQ</a></li>
+                <li class="navbar__menu-button--mobile">
                     <button onclick="window.location.href='login.html'">MASUK / DAFTAR</button>
                 </li>
             </ul>
-            <button onclick="window.location.href='login.html'">MASUK / DAFTAR</button>
+            <button class="navbar__button--desktop" onclick="window.location.href='login.html'">MASUK / DAFTAR</button>
         </div>
-
     </nav>
 
-    <main>
-        <div class="container">
-            <div class="tabs">
-                <div class="tab active" onclick="showForm('login')">MASUK</div>
-                <div class="tab" onclick="showForm('register')">DAFTAR</div>
+    <main class="login-page">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <div class="auth-tab auth-tab--active" id="login-tab">MASUK</div>
+                <div class="auth-tab" id="register-tab">DAFTAR</div>
             </div>
 
-            <div class="form-container">
-                <!-- Form MASUK -->
-                <div id="loginForm">
+            <div class="auth-form-container">
+                <form id="loginForm" class="auth-form">
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" placeholder="Masukkan email">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="Masukkan email">
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" placeholder="Masukkan password">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Masukkan password">
                     </div>
-                    <div class="form-group" style="display: flex;">
-                        <div style="flex: auto; display: flex; gap: 0.5em;">
-                            <input style="width: 1em; height: 1em;padding: 0; border-radius: 0;" type="checkbox"
-                                id="rememberme">
-                            <label for="rememberme">Remember Me</label>
+                    <div class="form-group-inline">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="remember-me">
+                            <label for="remember-me">Remember Me</label>
                         </div>
-                        <a style="flex: 1; text-wrap: nowrap; line-height: 1em;" href="">Forget Password?</a>
+                        <a href="#">Forget Password?</a>
                     </div>
-                    <button>MASUK</button>
-                </div>
+                    <button type="submit" class="auth-button">MASUK</button>
+                </form>
 
-                <!-- Form DAFTAR -->
-                <div id="registerForm" class="hidden">
+                <form id="registerForm" class="auth-form hidden">
                     <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" placeholder="Masukkan nama">
+                        <label for="register-name">Nama</label>
+                        <input type="text" id="register-name" placeholder="Masukkan nama">
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" placeholder="Masukkan password">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" placeholder="Masukkan password">
                     </div>
                     <div class="form-group">
-                        <label>Nomor handphone</label>
-                        <input type="tel" placeholder="Masukkan nomor HP">
+                        <label for="register-phone">Nomor handphone</label>
+                        <input type="tel" id="register-phone" placeholder="Masukkan nomor HP">
                     </div>
                     <div class="form-group">
-                        <label>Alamat E-Mail</label>
-                        <input type="email" placeholder="Masukkan email">
+                        <label for="register-email">Alamat E-Mail</label>
+                        <input type="email" id="register-email" placeholder="Masukkan email">
                     </div>
-                    <button>DAFTAR</button>
-                </div>
+                    <button type="submit" class="auth-button">DAFTAR</button>
+                </form>
             </div>
         </div>
-
     </main>
 
-
     <script>
-        function showForm(form) {
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-            const tabs = document.querySelectorAll('.tab');
+        // Script sederhana untuk tab login/register
+        const loginTab = document.getElementById('login-tab');
+        const registerTab = document.getElementById('register-tab');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
 
-            if (form === 'login') {
-                loginForm.classList.remove('hidden');
-                registerForm.classList.add('hidden');
-                tabs[0].classList.add('active');
-                tabs[1].classList.remove('active');
-            } else {
-                loginForm.classList.add('hidden');
-                registerForm.classList.remove('hidden');
-                tabs[0].classList.remove('active');
-                tabs[1].classList.add('active');
-            }
-        }
+        loginTab.addEventListener('click', () => {
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+            loginTab.classList.add('auth-tab--active');
+            registerTab.classList.remove('auth-tab--active');
+        });
+
+        registerTab.addEventListener('click', () => {
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            loginTab.classList.remove('auth-tab--active');
+            registerTab.classList.add('auth-tab--active');
+        });
     </script>
-
 
 </body>
 
