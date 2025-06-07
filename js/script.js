@@ -6,26 +6,26 @@ document.addEventListener('DOMContentLoaded', function () {
     faqItems.forEach(item => {
         const button = item.querySelector('.faq__question');
         const answer = item.querySelector('.faq__answer');
-        const icon = item.querySelector('.faq__icon');
 
         button.addEventListener('click', () => {
             const isActive = item.classList.contains('faq__item--active');
 
-            // Close all other items
+            // Selalu tutup semua item terlebih dahulu
             faqItems.forEach(otherItem => {
                 otherItem.classList.remove('faq__item--active');
                 otherItem.querySelector('.faq__answer').style.maxHeight = '0px';
-                otherItem.querySelector('.faq__icon').textContent = '+';
                 otherItem.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
             });
 
-            // Open the clicked item if it wasn't active
+            // FEEDBACK [FIX]: Logika disederhanakan.
+            // Jika item yang diklik tidak aktif, buka item tersebut.
             if (!isActive) {
                 item.classList.add('faq__item--active');
+                // Dengan padding yang sudah diatur di CSS, scrollHeight akan memberikan nilai yang benar.
                 answer.style.maxHeight = answer.scrollHeight + 'px';
-                icon.textContent = '−';
                 button.setAttribute('aria-expanded', 'true');
             }
+            // Jika item sudah aktif (diklik lagi), loop di atas sudah menanganinya (menutupnya).
         });
     });
 
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function highlightMenu() {
         let current = '';
-        const navHeight = 80; // height of the navbar
+        const navHeight = 80;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -47,13 +47,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
         menuLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
+            if (link.getAttribute('href').substring(1) === current) {
                 link.classList.add('active');
             }
         });
     }
 
-    window.addEventListener('scroll', highlightMenu);
-    window.addEventListener('load', highlightMenu);
+    if (menuLinks.length > 0 && sections.length > 0) {
+        window.addEventListener('scroll', highlightMenu);
+        window.addEventListener('load', highlightMenu);
+    }
 
+
+    // --- Logika untuk Tab di Halaman Login ---
+    const loginTab = document.getElementById('login-tab');
+    const registerTab = document.getElementById('register-tab');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
+    if (loginTab && registerTab && loginForm && registerForm) {
+        loginTab.addEventListener('click', () => {
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+            loginTab.classList.add('auth-tab--active');
+            registerTab.classList.remove('auth-tab--active');
+        });
+
+        registerTab.addEventListener('click', () => {
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            loginTab.classList.remove('auth-tab--active');
+            registerTab.classList.add('auth-tab--active');
+        });
+
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Login berhasil! (Ini adalah pesan demo)');
+        });
+
+        registerForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Pendaftaran berhasil! Silakan cek email Anda. (Ini adalah pesan demo)');
+        });
+    }
 });

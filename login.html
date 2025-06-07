@@ -32,14 +32,14 @@
             </label>
 
             <ul class="navbar__menu">
-                <li><a href="#beranda" class="navbar__menu-link">Beranda</a></li>
-                <li><a href="#tentang" class="navbar__menu-link">Tentang</a></li>
-                <li><a href="#faq" class="navbar__menu-link">FAQ</a></li>
+                <li><a href="index.html#beranda" class="navbar__menu-link">Beranda</a></li>
+                <li><a href="index.html#tentang" class="navbar__menu-link">Tentang</a></li>
+                <li><a href="index.html#faq" class="navbar__menu-link">FAQ</a></li>
                 <li class="navbar__menu-button--mobile">
-                    <button onclick="window.location.href='login.html'">MASUK / DAFTAR</button>
+                     <a href="login.html" class="navbar__menu-button-link">MASUK / DAFTAR</a>
                 </li>
             </ul>
-            <button class="navbar__button--desktop" onclick="window.location.href='login.html'">MASUK / DAFTAR</button>
+             <a href="login.html" class="navbar__button--desktop">MASUK / DAFTAR</a>
         </div>
     </nav>
 
@@ -54,11 +54,11 @@
                 <form id="loginForm" class="auth-form">
                     <div class="form-group">
                         <label for="login-email">Email</label>
-                        <input type="email" id="login-email" placeholder="Masukkan email">
+                        <input type="email" id="login-email" placeholder="Masukkan email" required>
                     </div>
                     <div class="form-group">
                         <label for="login-password">Password</label>
-                        <input type="password" id="login-password" placeholder="Masukkan password">
+                         <input type="password" id="login-password" placeholder="Masukkan password" required>
                     </div>
                     <div class="form-group-inline">
                         <div class="checkbox-group">
@@ -73,19 +73,19 @@
                 <form id="registerForm" class="auth-form hidden">
                     <div class="form-group">
                         <label for="register-name">Nama</label>
-                        <input type="text" id="register-name" placeholder="Masukkan nama">
+                        <input type="text" id="register-name" placeholder="Masukkan nama" required>
                     </div>
                     <div class="form-group">
                         <label for="register-password">Password</label>
-                        <input type="password" id="register-password" placeholder="Masukkan password">
+                        <input type="password" id="register-password" placeholder="Masukkan password" required>
                     </div>
                     <div class="form-group">
                         <label for="register-phone">Nomor handphone</label>
-                        <input type="tel" id="register-phone" placeholder="Masukkan nomor HP">
+                        <input type="tel" id="register-phone" placeholder="Masukkan nomor HP" required>
                     </div>
                     <div class="form-group">
                         <label for="register-email">Alamat E-Mail</label>
-                        <input type="email" id="register-email" placeholder="Masukkan email">
+                        <input type="email" id="register-email" placeholder="Masukkan email" required>
                     </div>
                     <button type="submit" class="auth-button">DAFTAR</button>
                 </form>
@@ -93,27 +93,7 @@
         </div>
     </main>
 
-    <script>
-        // Script sederhana untuk tab login/register
-        const loginTab = document.getElementById('login-tab');
-        const registerTab = document.getElementById('register-tab');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-
-        loginTab.addEventListener('click', () => {
-            loginForm.classList.remove('hidden');
-            registerForm.classList.add('hidden');
-            loginTab.classList.add('auth-tab--active');
-            registerTab.classList.remove('auth-tab--active');
-        });
-
-        registerTab.addEventListener('click', () => {
-            loginForm.classList.add('hidden');
-            registerForm.classList.remove('hidden');
-            loginTab.classList.remove('auth-tab--active');
-            registerTab.classList.add('auth-tab--active');
-        });
-    </script>
+    <script src="js/script.js"></script>
 
 </body>
 
