@@ -10,22 +10,17 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', () => {
             const isActive = item.classList.contains('faq__item--active');
 
-            // Selalu tutup semua item terlebih dahulu
             faqItems.forEach(otherItem => {
                 otherItem.classList.remove('faq__item--active');
                 otherItem.querySelector('.faq__answer').style.maxHeight = '0px';
                 otherItem.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
             });
 
-            // FEEDBACK [FIX]: Logika disederhanakan.
-            // Jika item yang diklik tidak aktif, buka item tersebut.
             if (!isActive) {
                 item.classList.add('faq__item--active');
-                // Dengan padding yang sudah diatur di CSS, scrollHeight akan memberikan nilai yang benar.
                 answer.style.maxHeight = answer.scrollHeight + 'px';
                 button.setAttribute('aria-expanded', 'true');
             }
-            // Jika item sudah aktif (diklik lagi), loop di atas sudah menanganinya (menutupnya).
         });
     });
 
@@ -59,13 +54,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // --- Logika untuk Tab di Halaman Login ---
+    // --- Form Handlers ---
+    // Handler untuk Tab di Halaman Login
     const loginTab = document.getElementById('login-tab');
-    const registerTab = document.getElementById('register-tab');
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
+    if (loginTab) {
+        const registerTab = document.getElementById('register-tab');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
 
-    if (loginTab && registerTab && loginForm && registerForm) {
         loginTab.addEventListener('click', () => {
             loginForm.classList.remove('hidden');
             registerForm.classList.add('hidden');
@@ -82,12 +78,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
         loginForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            alert('Login berhasil! (Ini adalah pesan demo)');
+            alert('Login berhasil! Mengarahkan ke halaman profil...');
+            window.location.href = 'profile.html';
         });
 
         registerForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            alert('Pendaftaran berhasil! Silakan cek email Anda. (Ini adalah pesan demo)');
+            alert('Pendaftaran berhasil! Silakan login. (Pesan demo)');
         });
     }
+
+    // Handler untuk Form Profil
+    const profileForm = document.getElementById('profileForm');
+    if (profileForm) {
+        profileForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const newPassword = document.getElementById('profile-new-password').value;
+            const confirmPassword = document.getElementById('profile-confirm-password').value;
+
+            if (newPassword && (newPassword !== confirmPassword)) {
+                alert('Konfirmasi password baru tidak cocok!');
+                return;
+            }
+            alert('Profil berhasil diperbarui! (Pesan demo)');
+        });
+    }
+
+    // Handler untuk Form Antrian
+    const queueForm = document.getElementById('queueForm');
+    if (queueForm) {
+        queueForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const service = document.getElementById('queue-service').value;
+            const doctor = document.getElementById('queue-doctor').value; // FEEDBACK: Mengambil data dokter
+            const date = document.getElementById('queue-date').value;
+
+            const queueNumber = `${service.charAt(0)}-${Math.floor(100 + Math.random() * 900)}`;
+
+            // FEEDBACK: Menambahkan nama dokter di pesan alert
+            alert(`Pendaftaran antrian berhasil!\n\nNomor Antrian: ${queueNumber}\nLayanan: ${service}\nDokter: ${doctor}\nTanggal: ${date}\n\nTiket Anda akan muncul di halaman profil. (Pesan demo)`);
+        });
+    }
+
 });

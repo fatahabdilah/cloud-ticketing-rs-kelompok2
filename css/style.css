@@ -6,6 +6,8 @@
     --color-black: #242424;
     --color-light-gray: rgb(202, 202, 202);
     --color-dark-gray: #757575;
+    --color-red: #d9534f;
+    --color-dark-red: #c9302c;
 
     font-family: "Poppins", sans-serif;
     --box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.3);
@@ -59,10 +61,6 @@ section>div,
     justify-content: center;
     width: 100%;
     box-shadow: var(--box-shadow);
-}
-
-.navbar--static {
-    position: static;
 }
 
 .navbar__container {
@@ -215,7 +213,6 @@ section>div,
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../asset/istockphoto-1312706413-612x612.jpg');
     background-size: cover;
     background-position: center;
-    /* FEEDBACK: Baris ini ditambahkan untuk efek paralaks. Gambar latar akan tetap di posisi saat halaman di-scroll. */
     background-attachment: fixed;
 }
 
@@ -512,13 +509,11 @@ section>div,
     overflow: hidden;
     transition: max-height 0.4s ease;
     background-color: #f9f9f9;
-    /* FEEDBACK [FIX]: Padding dipindahkan ke sini dari tag <p> untuk memastikan kalkulasi tinggi yang benar. */
     padding: 0 2em;
 }
 
 .faq__answer p {
-    /* FEEDBACK [FIX]: Padding di sini dihapus karena sudah diterapkan di parent-nya. Ini memperbaiki masalah konten terpotong. */
-    padding: 0;
+    padding: 0.5em 0;
 }
 
 /* === FOOTER === */
@@ -625,116 +620,8 @@ section>div,
 }
 
 
-/* === RESPONSIVE STYLES === */
-@media (max-width: 1024px) {
-    .services__item {
-        min-width: 300px;
-    }
-}
-
-@media (max-width: 768px) {
-
-    /* Navbar Mobile */
-    .navbar__menu {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-        position: absolute;
-        top: 100%;
-        display: grid;
-        left: 0;
-        background: var(--color-white);
-        width: 100%;
-        justify-content: center;
-        justify-items: center;
-        gap: 0.5em;
-        box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-        padding: 0;
-    }
-
-    .navbar__menu--static {
-        display: none;
-    }
-
-    .navbar__menu-button--mobile {
-        display: flex;
-    }
-
-    .navbar__button--desktop {
-        display: none;
-    }
-
-    .navbar__burger-checkbox:checked~.navbar__menu {
-        max-height: 500px;
-        opacity: 1;
-        padding: 1em 0;
-    }
-
-    .navbar__burger-label {
-        display: flex;
-    }
-
-    /* Footer Mobile */
-    .footer__container {
-        padding: 2em;
-        gap: 2em;
-    }
-
-    .footer__main-content {
-        display: grid;
-    }
-
-    /* Partners Mobile */
-    .partners__logos {
-        gap: 4em;
-    }
-
-    .partners__logos img {
-        width: 4em;
-    }
-}
-
-@media (max-width: 425px) {
-    .services__item {
-        min-width: 288px;
-    }
-
-    /* CTA Mobile */
-    .cta__card {
-        min-width: 288px;
-        box-sizing: border-box;
-        padding: 1em;
-        gap: 0.5em;
-    }
-
-    .cta__button {
-        font-size: 18px;
-    }
-
-    /* Partners Mobile */
-    .partners__logos {
-        gap: 3em;
-    }
-
-    .partners__logos img {
-        width: 3em;
-    }
-
-    /* FAQ Mobile */
-    .faq__question {
-        gap: 0.5em;
-        padding: 0.5em 1em;
-    }
-
-    .faq__answer {
-        padding: 0 1em;
-        /* Menyesuaikan padding untuk mobile */
-    }
-}
-
-/* === LOGIN PAGE STYLES === */
-.login-page {
+/* === FORM PAGES (Login, Register, Profile, Antrian) === */
+.page-background--form {
     padding: 1em;
     display: flex;
     align-items: center;
@@ -744,16 +631,18 @@ section>div,
         url(../asset/istockphoto-1312706413-612x612.jpg);
     background-size: cover;
     background-position: center;
-    padding-top: 80px;
+    padding-top: 100px;
+    /* Menambah padding agar tidak terpotong navbar */
+    padding-bottom: 2em;
     box-sizing: border-box;
-    /* FEEDBACK: Baris ini ditambahkan untuk efek paralaks pada halaman login. */
     background-attachment: fixed;
 }
 
 .auth-container {
     background: var(--color-white);
     border-radius: 16px;
-    width: max-content;
+    width: 100%;
+    max-width: 480px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
@@ -767,6 +656,19 @@ section>div,
     text-decoration: underline;
 }
 
+/* FEEDBACK: Style baru untuk header form (biru, teks putih) */
+.form-header {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 1em;
+    text-align: center;
+}
+
+.form-header h2 {
+    font-size: 1.25em;
+    padding-bottom: 0;
+}
+
 .auth-tabs {
     display: flex;
     background-color: var(--color-light-gray);
@@ -776,7 +678,7 @@ section>div,
     border-radius: 1em 1em 0 0;
     flex: 1;
     text-align: center;
-    padding: 1em 5em;
+    padding: 1em 2em;
     cursor: pointer;
     background-color: var(--color-light-gray);
     color: var(--color-dark-gray);
@@ -825,27 +727,41 @@ section>div,
 .auth-form input[type="text"],
 .auth-form input[type="password"],
 .auth-form input[type="email"],
-.auth-form input[type="tel"] {
+.auth-form input[type="tel"],
+.auth-form input[type="date"],
+.auth-form select {
     box-sizing: border-box;
     width: 100%;
-    padding: 0.5em 1em;
+    padding: 0.75em 1em;
     border-radius: 1.25em;
     border: 1px solid var(--color-light-gray);
     outline: none;
     background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.auth-form input[type="text"]:focus,
-.auth-form input[type="password"]:focus,
-.auth-form input[type="email"]:focus,
-.auth-form input[type="tel"]:focus {
+.auth-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23757575' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1em center;
+    background-size: 1em;
+    padding-right: 2.5em;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
     border-color: var(--color-blue);
     box-shadow: 0 0 5px rgba(5, 79, 169, 0.3);
 }
 
 .auth-button {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 500;
     padding: 12px 36px;
     background: var(--color-blue);
     color: white;
@@ -854,6 +770,7 @@ section>div,
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     width: 100%;
+    margin-top: 1em;
     transition: background-color 0.3s ease;
 }
 
@@ -861,16 +778,1152 @@ section>div,
     background-color: #043b86;
 }
 
+.form-divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 1.5em 0;
+}
+
+/* FEEDBACK: Style baru untuk bagian tiket di halaman profil */
+.ticket-section {
+    padding: 0 2.5em 2.5em 2.5em;
+}
+
+.ticket-section-title {
+    color: var(--color-blue);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1em;
+    border-top: 1px solid #eee;
+    padding-top: 1.5em;
+}
+
+.ticket-container {
+    display: grid;
+    gap: 1em;
+}
+
+.ticket-card {
+    border: 1px solid var(--color-light-gray);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-light-blue);
+    padding: 0.5em 1em;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.ticket-queue-number {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: var(--color-blue);
+}
+
+.ticket-date {
+    font-size: 0.9em;
+    color: var(--color-dark-gray);
+}
+
+.ticket-body {
+    padding: 1em;
+}
+
+.ticket-body p {
+    margin-bottom: 0.5em;
+    font-size: 0.95em;
+}
+
+.ticket-body p:last-child {
+    margin-bottom: 0;
+}
+
+.no-tickets {
+    text-align: center;
+    color: var(--color-dark-gray);
+    padding: 1em;
+}
+
 .hidden {
     display: none;
 }
 
-@media(max-width:425px) {
-    .auth-tab {
-        padding: 1em 3em;
+
+/* === RESPONSIVE STYLES === */
+@media (max-width: 1024px) {
+    .services__item {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* ... (kode responsif lainnya tidak berubah) ... */
+    .navbar__menu {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+        position: absolute;
+        top: 100%;
+        display: grid;
+        left: 0;
+        background: var(--color-white);
+        width: 100%;
+        justify-content: center;
+        justify-items: center;
+        gap: 0.5em;
+        box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 0;
     }
 
-    .form-group-inline {
-        font-size: 14px;
+    .navbar__menu-button--mobile {
+        display: flex;
+    }
+
+    .navbar__button--desktop {
+        display: none;
+    }
+
+    .navbar__burger-checkbox:checked~.navbar__menu {
+        max-height: 500px;
+        opacity: 1;
+        padding: 1em 0;
+    }
+
+    .navbar__burger-label {
+        display: flex;
+    }
+
+    .footer__container {
+        padding: 2em;
+        gap: 2em;
+    }
+
+    .footer__main-content {
+        display: grid;
+    }
+
+    .partners__logos {
+        gap: 4em;
+    }
+
+    .partners__logos img {
+        width: 4em;
+    }
+}
+
+@media (max-width: 425px) {
+
+    /* ... (kode responsif lainnya tidak berubah) ... */
+    .services__item {
+        min-width: 288px;
+    }
+
+    .cta__card {
+        min-width: 288px;
+        box-sizing: border-box;
+        padding: 1em;
+        gap: 0.5em;
+    }
+
+    .cta__button {
+        font-size: 18px;
+    }
+
+    .partners__logos {
+        gap: 3em;
+    }
+
+    .partners__logos img {
+        width: 3em;
+    }
+
+    .faq__question {
+        gap: 0.5em;
+        padding: 0.5em 1em;
+    }
+
+    .faq__answer {
+        padding: 0 1em;
+    }
+
+    .auth-form-container,
+    .ticket-section {
+        padding: 2em 1.5em;
+    }
+
+    .auth-tab {
+        padding: 1em;
+    }
+}
+
+/* === GENERAL STYLES & VARIABLES === */
+:root {
+    --color-light-blue: #cce2fc;
+    --color-blue: #054FA9;
+    --color-white: #ffffff;
+    --color-black: #242424;
+    --color-light-gray: rgb(202, 202, 202);
+    --color-dark-gray: #757575;
+    --color-red: #d9534f;
+    --color-dark-red: #c9302c;
+
+    font-family: "Poppins", sans-serif;
+    --box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.3);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+
+h2 {
+    line-height: 1.25em;
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-bottom: 0.25em;
+}
+
+h3 {
+    color: var(--color-white);
+    font-weight: 500;
+}
+
+p,
+a {
+    line-height: 1.5em;
+}
+
+section,
+.footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+section>div,
+.footer>div {
+    width: 100%;
+    max-width: 1088px;
+}
+
+/* === NAVBAR === */
+.navbar {
+    z-index: 10;
+    background-color: var(--color-white);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-shadow: var(--box-shadow);
+}
+
+.navbar__container {
+    width: 100%;
+    max-width: 1152px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 1em;
+}
+
+.navbar__brand img {
+    height: 2.25em;
+}
+
+.navbar__menu {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.navbar__menu-link {
+    position: relative;
+    padding-bottom: 0.25em;
+    color: #000;
+    transition: color 0.3s ease;
+}
+
+.navbar__menu-link:hover {
+    color: var(--color-blue);
+}
+
+.navbar__menu-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-blue);
+    border-radius: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.navbar__menu-link:hover::after,
+.navbar__menu-link.active::after {
+    transform: scaleX(1);
+}
+
+
+.navbar__menu-button--mobile {
+    display: none;
+}
+
+.navbar__button--desktop,
+.navbar__menu-button-link {
+    display: inline-block;
+    box-shadow: var(--box-shadow);
+    font-size: 0.75em;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    border-radius: 2em;
+    padding: 1em 1.5em;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.navbar__button--desktop:hover,
+.navbar__menu-button-link:hover {
+    background-color: #043b86;
+    color: var(--color-white);
+}
+
+.navbar__burger-checkbox {
+    display: none;
+}
+
+.navbar__burger-label {
+    display: none;
+    position: relative;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+.navbar__burger-label span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 66%;
+    background: var(--color-white);
+    border-radius: 0.5em;
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: .25s;
+    left: 17%;
+}
+
+.navbar__burger-label span:nth-of-type(1) {
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blue);
+    left: 0;
+}
+
+.navbar__burger-label span:nth-of-type(2) {
+    top: 25%;
+    transform-origin: center;
+}
+
+.navbar__burger-label span:nth-of-type(3) {
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: center;
+}
+
+.navbar__burger-label span:nth-of-type(4) {
+    top: 75%;
+    transform: translateY(-100%);
+    transform-origin: center;
+}
+
+.navbar__burger-checkbox:checked+.navbar__burger-label span:nth-of-type(1) {
+    border-radius: 2em;
+}
+
+.navbar__burger-checkbox:checked+.navbar__burger-label span:nth-of-type(2) {
+    transform: rotate(45deg);
+    top: 50%;
+}
+
+.navbar__burger-checkbox:checked+.navbar__burger-label span:nth-of-type(3) {
+    width: 0%;
+    opacity: 0;
+}
+
+.navbar__burger-checkbox:checked+.navbar__burger-label span:nth-of-type(4) {
+    transform: rotate(-45deg);
+    top: 50%;
+}
+
+/* === HERO SECTION === */
+.hero {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--color-light-blue);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../asset/istockphoto-1312706413-612x612.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* === BRAND SHOWCASE SECTION === */
+.brand-showcase {
+    background-color: var(--color-light-blue);
+    box-shadow: var(--box-shadow);
+    position: relative;
+}
+
+.brand-showcase__container {
+    display: grid;
+    justify-items: center;
+}
+
+.brand-showcase__logo a {
+    display: block;
+    box-shadow: var(--box-shadow);
+    height: 2.5em;
+    box-sizing: content-box;
+    padding: 0.5em 2.5em;
+    border-radius: 0 0 1em 1em;
+    background-color: var(--color-blue);
+}
+
+.brand-showcase__logo img {
+    height: 100%;
+}
+
+.brand-showcase__tagline {
+    text-align: center;
+    padding: 1em;
+    font-weight: 500;
+}
+
+/* === GENERAL PADDING FOR SECTIONS === */
+.about-us,
+.services,
+.cta,
+.faq {
+    padding: 4em;
+}
+
+@media (max-width: 768px) {
+
+    .about-us,
+    .services,
+    .cta,
+    .faq {
+        padding: 2em;
+    }
+}
+
+@media (max-width: 425px) {
+
+    .about-us,
+    .services,
+    .cta,
+    .faq {
+        padding: 2em 1em;
+    }
+}
+
+/* === ABOUT US SECTION === */
+.about-us {
+    background-color: var(--color-white);
+    scroll-margin-top: 68px;
+}
+
+.about-us__container {
+    display: flex;
+    column-gap: 2em;
+    row-gap: 1em;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-us__text {
+    flex: 3;
+    min-width: 288px;
+}
+
+.about-us__image {
+    flex: 2;
+    min-width: 288px;
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+/* === SERVICES SECTION === */
+.services {
+    background-color: var(--color-light-blue);
+}
+
+.services__container {
+    display: grid;
+    justify-content: left;
+}
+
+.services__list {
+    padding-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.services__item {
+    box-shadow: var(--box-shadow);
+    flex: 1;
+    display: flex;
+    border-radius: 1em;
+    overflow: hidden;
+    min-width: 212px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services__item:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.services__item-icon {
+    position: relative;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    background-color: var(--color-blue);
+    padding: 1em;
+}
+
+.services__item-icon img {
+    object-fit: contain;
+    height: 2.5em;
+}
+
+.services__item p {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    font-weight: 600;
+    padding: 0.5em 1em;
+    background-color: var(--color-white);
+    font-size: 14px;
+}
+
+/* === CALL-TO-ACTION (CTA) SECTION === */
+.cta {
+    background-color: var(--color-white);
+}
+
+.cta__container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1em;
+    column-gap: 2em;
+}
+
+.cta__card {
+    min-width: 350px;
+    flex: 1;
+    box-shadow: var(--box-shadow);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 1em;
+    background-color: var(--color-blue);
+    padding: 2em;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.cta__button {
+    display: flex;
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-white);
+    padding: 0.25em 1em;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 20px;
+    border-radius: 1.25em;
+    font-weight: 500;
+    width: max-content;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta__button:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.03);
+}
+
+.cta__button img {
+    height: 1.5em;
+}
+
+.cta__card p {
+    color: var(--color-white);
+}
+
+/* === PARTNERS SECTION === */
+.partners {
+    background-color: var(--color-light-blue);
+}
+
+.partners__container {
+    justify-content: center;
+    justify-items: center;
+    display: grid;
+}
+
+.partners__title {
+    box-shadow: var(--box-shadow);
+    color: var(--color-white);
+    padding: 0.5em 2.5em;
+    border-radius: 0 0 1em 1em;
+    background-color: var(--color-blue);
+    font-weight: 500;
+}
+
+.partners__logos {
+    display: flex;
+    padding: 1em;
+    gap: 8em;
+    align-items: center;
+}
+
+.partners__logos img {
+    width: 5em;
+}
+
+/* === FAQ SECTION === */
+.faq {
+    background-color: var(--color-white);
+    scroll-margin-top: 68px;
+}
+
+.faq__container {
+    display: grid;
+    justify-items: center;
+}
+
+.faq__list {
+    padding-top: 1em;
+    display: grid;
+    gap: 1em;
+    width: 100%;
+}
+
+.faq__item {
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: 0.3s ease;
+}
+
+.faq__question {
+    align-content: center;
+    gap: 1em;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    background-color: var(--color-blue);
+    padding: 0.5em 2em;
+    box-shadow: var(--box-shadow);
+    transition: background-color 0.3s;
+}
+
+.faq__question:hover {
+    background-color: #043b86;
+}
+
+.faq__question p {
+    text-align: left;
+    color: var(--color-white);
+}
+
+.faq__icon {
+    height: min-content;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+    font-size: 1.5em;
+    color: var(--color-white);
+    font-style: normal;
+}
+
+.faq__item.faq__item--active .faq__icon {
+    transform: rotate(45deg);
+}
+
+.faq__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: #f9f9f9;
+    padding: 0 2em;
+}
+
+.faq__answer p {
+    padding: 0.5em 0;
+}
+
+/* === FOOTER === */
+.footer {
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-black);
+}
+
+.footer p,
+.footer a {
+    color: var(--color-white);
+    font-weight: 300;
+}
+
+.footer__container {
+    gap: 4em;
+    padding: 4em 2em 2em 2em;
+    display: grid;
+}
+
+.footer__main-content {
+    gap: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+.footer__about,
+.footer__contact,
+.footer__quick-links {
+    display: grid;
+    align-items: start;
+    gap: 1em;
+    align-content: start;
+}
+
+.footer__about {
+    flex: 3;
+}
+
+.footer__logo {
+    height: 2.5em;
+}
+
+.footer__contact {
+    flex: 2;
+}
+
+.footer__contact ul {
+    display: grid;
+    gap: 0.5em;
+}
+
+.footer__contact li {
+    gap: 0.5em;
+    align-items: start;
+    display: flex;
+}
+
+.footer__contact li a {
+    transition: color 0.3s ease;
+}
+
+.footer__contact li a:hover {
+    color: var(--color-light-blue);
+}
+
+.footer__contact li img {
+    height: auto;
+    width: 1.5em;
+    object-fit: contain;
+}
+
+.footer__quick-links {
+    flex: 1;
+}
+
+.footer__quick-links ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    display: grid;
+}
+
+.footer__quick-links li::marker {
+    color: var(--color-white);
+}
+
+.footer__quick-links li a {
+    transition: color 0.3s ease;
+}
+
+.footer__quick-links li a:hover {
+    color: var(--color-light-blue);
+}
+
+.footer__copyright a {
+    display: flex;
+    justify-content: center;
+    color: var(--color-blue);
+}
+
+.footer__copyright a:hover {
+    transition: 0.3s;
+    color: var(--color-light-blue);
+}
+
+
+/* === FORM PAGES (Login, Register, Profile, Antrian) === */
+.page-background--form {
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(../asset/istockphoto-1312706413-612x612.jpg);
+    background-size: cover;
+    background-position: center;
+    padding-top: 100px;
+    /* Menambah padding agar tidak terpotong navbar */
+    padding-bottom: 2em;
+    box-sizing: border-box;
+    background-attachment: fixed;
+}
+
+.auth-container {
+    background: var(--color-white);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.auth-container a {
+    color: var(--color-blue);
+    text-decoration: none;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+/* FEEDBACK: Style baru untuk header form (biru, teks putih) */
+.form-header {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 1em;
+    text-align: center;
+}
+
+.form-header h2 {
+    font-size: 1.25em;
+    padding-bottom: 0;
+}
+
+.auth-tabs {
+    display: flex;
+    background-color: var(--color-light-gray);
+}
+
+.auth-tab {
+    border-radius: 1em 1em 0 0;
+    flex: 1;
+    text-align: center;
+    padding: 1em 2em;
+    cursor: pointer;
+    background-color: var(--color-light-gray);
+    color: var(--color-dark-gray);
+    transition: all 0.3s ease;
+}
+
+.auth-tab--active {
+    background: var(--color-blue);
+    color: var(--color-white);
+}
+
+.auth-form-container {
+    padding: 2.5em;
+    background-color: var(--color-white);
+}
+
+.auth-form .hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 1em;
+    gap: 0.5em;
+    display: grid;
+}
+
+.form-group-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+    font-size: 14px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.checkbox-group input {
+    width: auto;
+    height: auto;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="email"],
+.auth-form input[type="tel"],
+.auth-form input[type="date"],
+.auth-form select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.75em 1em;
+    border-radius: 1.25em;
+    border: 1px solid var(--color-light-gray);
+    outline: none;
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23757575' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1em center;
+    background-size: 1em;
+    padding-right: 2.5em;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+    border-color: var(--color-blue);
+    box-shadow: 0 0 5px rgba(5, 79, 169, 0.3);
+}
+
+.auth-button {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 36px;
+    background: var(--color-blue);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-top: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #043b86;
+}
+
+.form-divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 1.5em 0;
+}
+
+/* FEEDBACK: Style baru untuk bagian tiket di halaman profil */
+.ticket-section {
+    padding: 0 2.5em 2.5em 2.5em;
+}
+
+.ticket-section-title {
+    color: var(--color-blue);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1em;
+    border-top: 1px solid #eee;
+    padding-top: 1.5em;
+}
+
+.ticket-container {
+    display: grid;
+    gap: 1em;
+}
+
+.ticket-card {
+    border: 1px solid var(--color-light-gray);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-light-blue);
+    padding: 0.5em 1em;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.ticket-queue-number {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: var(--color-blue);
+}
+
+.ticket-date {
+    font-size: 0.9em;
+    color: var(--color-dark-gray);
+}
+
+.ticket-body {
+    padding: 1em;
+}
+
+.ticket-body p {
+    margin-bottom: 0.5em;
+    font-size: 0.95em;
+}
+
+.ticket-body p:last-child {
+    margin-bottom: 0;
+}
+
+.no-tickets {
+    text-align: center;
+    color: var(--color-dark-gray);
+    padding: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* === RESPONSIVE STYLES === */
+@media (max-width: 1024px) {
+    .services__item {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* ... (kode responsif lainnya tidak berubah) ... */
+    .navbar__menu {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+        position: absolute;
+        top: 100%;
+        display: grid;
+        left: 0;
+        background: var(--color-white);
+        width: 100%;
+        justify-content: center;
+        justify-items: center;
+        gap: 0.5em;
+        box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 0;
+    }
+
+    .navbar__menu-button--mobile {
+        display: flex;
+    }
+
+    .navbar__button--desktop {
+        display: none;
+    }
+
+    .navbar__burger-checkbox:checked~.navbar__menu {
+        max-height: 500px;
+        opacity: 1;
+        padding: 1em 0;
+    }
+
+    .navbar__burger-label {
+        display: flex;
+    }
+
+    .footer__container {
+        padding: 2em;
+        gap: 2em;
+    }
+
+    .footer__main-content {
+        display: grid;
+    }
+
+    .partners__logos {
+        gap: 4em;
+    }
+
+    .partners__logos img {
+        width: 4em;
+    }
+}
+
+@media (max-width: 425px) {
+
+    /* ... (kode responsif lainnya tidak berubah) ... */
+    .services__item {
+        min-width: 288px;
+    }
+
+    .cta__card {
+        min-width: 288px;
+        box-sizing: border-box;
+        padding: 1em;
+        gap: 0.5em;
+    }
+
+    .cta__button {
+        font-size: 18px;
+    }
+
+    .partners__logos {
+        gap: 3em;
+    }
+
+    .partners__logos img {
+        width: 3em;
+    }
+
+    .faq__question {
+        gap: 0.5em;
+        padding: 0.5em 1em;
+    }
+
+    .faq__answer {
+        padding: 0 1em;
+    }
+
+    .auth-form-container,
+    .ticket-section {
+        padding: 2em 1.5em;
+    }
+
+    .auth-tab {
+        padding: 1em;
     }
 }

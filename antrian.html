@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Daftar - Cipta Hospital Indonesia</title>
+    <title>Ambil Antrian - Cipta Hospital Indonesia</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,49 +45,40 @@
 
     <main class="page-background--form">
         <div class="auth-container">
-            <div class="auth-tabs">
-                <div class="auth-tab auth-tab--active" id="login-tab">MASUK</div>
-                <div class="auth-tab" id="register-tab">DAFTAR</div>
+            <div class="form-header">
+                <h2>Ambil Nomor Antrian</h2>
             </div>
 
             <div class="auth-form-container">
-                <form id="loginForm" class="auth-form">
+                <form id="queueForm" class="auth-form">
                     <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" id="login-email" placeholder="Masukkan email" required>
+                        <label for="queue-service">Pilih Poli / Layanan</label>
+                        <select id="queue-service" required>
+                            <option value="" disabled selected>-- Pilih Layanan --</option>
+                            <option value="Poli Umum">Poli Umum</option>
+                            <option value="Poli Gigi">Poli Gigi</option>
+                            <option value="Laboratorium">Laboratorium</option>
+                            <option value="Radiologi">Radiologi</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" id="login-password" placeholder="Masukkan password" required>
-                    </div>
-                    <div class="form-group-inline">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="remember-me">
-                            <label for="remember-me">Remember Me</label>
-                        </div>
-                        <a href="#">Forget Password?</a>
-                    </div>
-                    <button type="submit" class="auth-button">MASUK</button>
-                </form>
 
-                <form id="registerForm" class="auth-form hidden">
                     <div class="form-group">
-                        <label for="register-name">Nama</label>
-                        <input type="text" id="register-name" placeholder="Masukkan nama" required>
+                        <label for="queue-doctor">Pilih Dokter</label>
+                        <select id="queue-doctor" required>
+                            <option value="" disabled selected>-- Pilih Dokter --</option>
+                            <option value="Dr. Budi Santoso">Dr. Budi Santoso (Umum)</option>
+                            <option value="Dr. Citra Lestari">Dr. Citra Lestari (Umum)</option>
+                            <option value="Dr. Anisa Putri">Dr. Anisa Putri (Gigi)</option>
+                            <option value="Dr. David Maulana">Dr. David Maulana (Gigi)</option>
+                            <option value="Tanpa Dokter">Staf Laboratorium / Radiologi</option>
+                        </select>
                     </div>
+
                     <div class="form-group">
-                        <label for="register-password">Password</label>
-                        <input type="password" id="register-password" placeholder="Masukkan password" required>
+                        <label for="queue-date">Pilih Tanggal</label>
+                        <input type="date" id="queue-date" required>
                     </div>
-                    <div class="form-group">
-                        <label for="register-phone">Nomor handphone</label>
-                        <input type="tel" id="register-phone" placeholder="Masukkan nomor HP" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="register-email">Alamat E-Mail</label>
-                        <input type="email" id="register-email" placeholder="Masukkan email" required>
-                    </div>
-                    <button type="submit" class="auth-button">DAFTAR</button>
+                    <button type="submit" class="auth-button">Ambil Nomor Antrian</button>
                 </form>
             </div>
         </div>

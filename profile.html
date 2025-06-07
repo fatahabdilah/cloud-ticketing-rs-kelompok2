@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pengguna - Cipta Hospital Indonesia</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="index.html" class="navbar__brand">
+                <img src="asset/Cipta Hospital Indonesi-Blue & Black.svg" alt="Logo Cipta Hospital Indonesia">
+            </a>
+
+            <input type="checkbox" id="burger-menu" class="navbar__burger-checkbox" hidden>
+            <label class="navbar__burger-label" for="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <ul class="navbar__menu">
+                <li><a href="index.html#beranda" class="navbar__menu-link">Beranda</a></li>
+                <li><a href="index.html#tentang" class="navbar__menu-link">Tentang</a></li>
+                <li><a href="index.html#faq" class="navbar__menu-link">FAQ</a></li>
+                <li class="navbar__menu-button--mobile">
+                    <a href="login.html" class="navbar__menu-button-link">MASUK / DAFTAR</a>
+                </li>
+            </ul>
+            <a href="login.html" class="navbar__button--desktop">MASUK / DAFTAR</a>
+        </div>
+    </nav>
+
+    <main class="page-background--form">
+        <div class="auth-container">
+            <div class="form-header">
+                <h2>Profil Pengguna</h2>
+            </div>
+
+            <div class="auth-form-container">
+                <form id="profileForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="profile-name">Nama</label>
+                        <input type="text" id="profile-name" value="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-phone">Nomor Handphone</label>
+                        <input type="tel" id="profile-phone" value="081234567890" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email">Alamat E-Mail</label>
+                        <input type="email" id="profile-email" value="johndoe@example.com" required>
+                    </div>
+                    <hr class="form-divider">
+                    <div class="form-group">
+                        <label for="profile-new-password">Password Baru (Opsional)</label>
+                        <input type="password" id="profile-new-password" placeholder="Isi untuk mengubah password">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-confirm-password">Konfirmasi Password Baru</label>
+                        <input type="password" id="profile-confirm-password" placeholder="Ketik ulang password baru">
+                    </div>
+                    <button type="submit" class="auth-button">Simpan Perubahan</button>
+                </form>
+            </div>
+
+            <div class="ticket-section">
+                <h3 class="ticket-section-title">Tiket Antrian Anda</h3>
+                <div class="ticket-container">
+                    <div class="ticket-card">
+                        <div class="ticket-header">
+                            <span class="ticket-queue-number">G-731</span>
+                            <span class="ticket-date">2025-06-10</span>
+                        </div>
+                        <div class="ticket-body">
+                            <p><strong>Layanan:</strong> Poli Gigi</p>
+                            <p><strong>Dokter:</strong> Dr. Anisa Putri</p>
+                        </div>
+                    </div>
+
+                    <div class="ticket-card">
+                        <div class="ticket-header">
+                            <span class="ticket-queue-number">U-219</span>
+                            <span class="ticket-date">2025-06-12</span>
+                        </div>
+                        <div class="ticket-body">
+                            <p><strong>Layanan:</strong> Poli Umum</p>
+                            <p><strong>Dokter:</strong> Dr. Budi Santoso</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
