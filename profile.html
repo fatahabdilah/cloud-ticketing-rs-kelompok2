@@ -35,11 +35,20 @@
                 <li><a href="index.html#beranda" class="navbar__menu-link">Beranda</a></li>
                 <li><a href="index.html#tentang" class="navbar__menu-link">Tentang</a></li>
                 <li><a href="index.html#faq" class="navbar__menu-link">FAQ</a></li>
-                <li class="navbar__menu-button--mobile">
-                    <a href="login.html" class="navbar__menu-button-link">MASUK / DAFTAR</a>
+                <li id="nav-antrian-mobile" class="navbar__menu-button--mobile hidden">
+                    <a href="antrian.html" class="navbar__menu-button-link">DAFTAR ANTRIAN</a>
+                </li>
+                <li id="nav-profile-mobile" class="navbar__menu-button--mobile hidden">
+                    <a href="profile.html" class="navbar__menu-button-link--secondary">PROFIL</a>
                 </li>
             </ul>
-            <a href="login.html" class="navbar__button--desktop">MASUK / DAFTAR</a>
+
+            <div id="nav-auth-desktop" class="navbar__auth-buttons hidden">
+                <a href="antrian.html" class="navbar__button--desktop">DAFTAR ANTRIAN</a>
+                <a href="profile.html" class="navbar__button--profile" title="Profil Pengguna">
+                    <img src="asset/User.svg" alt="Profil">
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -73,6 +82,7 @@
                         <input type="password" id="profile-confirm-password" placeholder="Ketik ulang password baru">
                     </div>
                     <button type="submit" class="auth-button">Simpan Perubahan</button>
+                    <button type="button" id="logoutButton" class="auth-button auth-button--danger">Logout</button>
                 </form>
             </div>
 

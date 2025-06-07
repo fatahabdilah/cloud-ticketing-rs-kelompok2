@@ -34,14 +34,27 @@
             </label>
 
             <ul class="navbar__menu">
-                <li><a href="#beranda" class="navbar__menu-link">Beranda</a></li>
-                <li><a href="#tentang" class="navbar__menu-link">Tentang</a></li>
-                <li><a href="#faq" class="navbar__menu-link">FAQ</a></li>
-                <li class="navbar__menu-button--mobile">
+                <li><a href="index.html#beranda" class="navbar__menu-link">Beranda</a></li>
+                <li><a href="index.html#tentang" class="navbar__menu-link">Tentang</a></li>
+                <li><a href="index.html#faq" class="navbar__menu-link">FAQ</a></li>
+                <li id="nav-antrian-mobile" class="navbar__menu-button--mobile hidden">
+                    <a href="antrian.html" class="navbar__menu-button-link">DAFTAR ANTRIAN</a>
+                </li>
+                <li id="nav-profile-mobile" class="navbar__menu-button--mobile hidden">
+                    <a href="profile.html" class="navbar__menu-button-link--secondary">PROFIL</a>
+                </li>
+                <li id="nav-guest-mobile" class="navbar__menu-button--mobile">
                     <a href="login.html" class="navbar__menu-button-link">MASUK / DAFTAR</a>
                 </li>
             </ul>
-            <a href="login.html" class="navbar__button--desktop">MASUK / DAFTAR</a>
+
+            <div id="nav-auth-desktop" class="navbar__auth-buttons hidden">
+                <a href="antrian.html" class="navbar__button--desktop">DAFTAR ANTRIAN</a>
+                <a href="profile.html" class="navbar__button--profile" title="Profil Pengguna">
+                    <img src="asset/User.svg" alt="Profil">
+                </a>
+            </div>
+            <a id="nav-guest-desktop" href="login.html" class="navbar__button--desktop">MASUK / DAFTAR</a>
         </div>
     </nav>
 
@@ -191,7 +204,7 @@
                         <li><a href="index.html#beranda">Beranda</a></li>
                         <li><a href="index.html#tentang">Tentang</a></li>
                         <li><a href="index.html#faq">FAQ</a></li>
-                        <li><a href="login.html">Masuk/Daftar</a></li>
+                        <li id="footer-auth-link"><a href="login.html">Masuk/Daftar</a></li>
                     </ul>
                 </nav>
             </div>
